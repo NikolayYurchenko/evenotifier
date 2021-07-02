@@ -1,0 +1,36 @@
+logging:
+  level.root.: info
+  level.com.crazygeniuses: debug
+#  config: config-files/logback.xml
+
+server:
+  port: 3000
+  compression:
+    enabled: true
+
+spring:
+  application:
+    name: evenotifier
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+        enable_lazy_load_no_trans: true
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      data-source-properties:
+        useUnicode: true
+        characterEncoding: UTF-8
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/notifier
+    username: ${MYSQL_USER:root}
+    password: ${MYSQL_PASSWORD:root}
+  jackson:
+    default-property-inclusion: NON_EMPTY
+    property-naming-strategy: SNAKE_CASE
+    mapper:
+      ACCEPT_CASE_INSENSITIVE_ENUMS: true
+
+
