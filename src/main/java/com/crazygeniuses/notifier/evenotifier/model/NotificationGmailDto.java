@@ -9,5 +9,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class NotificationGmailDto {
 
-    //TODO: fill me
+   private String id;
 }

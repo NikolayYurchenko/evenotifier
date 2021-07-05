@@ -9,5 +9,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class NotificationResponse {
 
-
+    private String id;
 }
