@@ -72,11 +72,6 @@ docker {
 	tag "-${version}", "${dockerRegistryName}/shopify:${version}"
 	tag "-latest", "${dockerRegistryName}/shopify:latest"
 	copySpec.from(tasks.unpack.outputs).into("dependency")
-	copy {
-
-		from "bin/tokens/."
-		into "build/dependency/tokens"
-	}
 	buildArgs(['DEPENDENCY': "dependency"])
 	pull true
 	noCache true

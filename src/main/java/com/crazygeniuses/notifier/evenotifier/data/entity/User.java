@@ -37,5 +37,5 @@ public class User extends BaseEntity {
     private String email;
 
     @Column(name = "phone", nullable = false)
-    private String handle;
+    private String phone;
 }

@@ -13,7 +13,6 @@ import java.util.List;
 @Service
 public class GmailNotificationProvider implements NotificationProvider<NotificationGmailDto> {
 
-
     @Override
     public void create(NotificationGmailDto dto) {
 
