@@ -4,9 +4,7 @@ import com.crazygeniuses.notifier.evenotifier.data.service.NotificationHistoryDa
 import com.crazygeniuses.notifier.evenotifier.model.NotificationDto;
 import com.crazygeniuses.notifier.evenotifier.model.NotificationResponse;
 import com.crazygeniuses.notifier.evenotifier.model.NotificationServiceType;
-import com.crazygeniuses.notifier.evenotifier.rest.GmailRestRepository;
 import com.crazygeniuses.notifier.evenotifier.service.NotificationHistoryService;
-import com.crazygeniuses.notifier.evenotifier.service.NotificationProvider;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,12 +25,12 @@ public class NotificationHistoryServiceImpl implements NotificationHistoryServic
     }
 
     @Override
-    public List<NotificationResponse> findAllHistory(String userUid) {
+    public List<NotificationResponse> findAllByUserUid(String userUid) {
         return null;
     }
 
     @Override
-    public List<NotificationResponse> findAllHistoryByType(NotificationServiceType type, String userUid) {
+    public List<NotificationResponse> findAllByType(NotificationServiceType type, String userUid) {
         return null;
     }
 }

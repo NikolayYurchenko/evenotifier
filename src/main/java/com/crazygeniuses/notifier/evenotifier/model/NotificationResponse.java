@@ -1,12 +1,11 @@
 package com.crazygeniuses.notifier.evenotifier.model;
 
-import com.crazygeniuses.notifier.evenotifier.data.entity.User;
-import lombok.*;
-import org.hibernate.annotations.Type;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
 import java.util.HashMap;
-import java.util.UUID;
 
 @Data
 @AllArgsConstructor

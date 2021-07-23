@@ -13,14 +13,14 @@ public interface NotificationHistoryService {
      * @param userUid
      * @param dto
      */
-        void save(String userUid, NotificationDto dto);
+     void save(String userUid, NotificationDto dto);
 
     /**
      * Find all user notification history
      * @param userUid
      * @return
      */
-    List<NotificationResponse> findAllHistory(String userUid);
+    List<NotificationResponse> findAllByUserUid(String userUid);
 
     /**
      * Find all user notification history by type
@@ -28,5 +28,5 @@ public interface NotificationHistoryService {
      * @param userUid
      * @return
      */
-    List<NotificationResponse> findAllHistoryByType(NotificationServiceType type, String userUid);
+    List<NotificationResponse> findAllByType(NotificationServiceType type, String userUid);
 }
