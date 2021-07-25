@@ -1,10 +1,12 @@
 package com.crazygeniuses.notifier.evenotifier.service.impl;
 
+import com.crazygeniuses.notifier.evenotifier.data.entity.NotificationHistory;
 import com.crazygeniuses.notifier.evenotifier.data.service.NotificationHistoryDataService;
 import com.crazygeniuses.notifier.evenotifier.model.NotificationDto;
 import com.crazygeniuses.notifier.evenotifier.model.NotificationResponse;
 import com.crazygeniuses.notifier.evenotifier.model.NotificationServiceType;
 import com.crazygeniuses.notifier.evenotifier.service.NotificationHistoryService;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,11 +28,31 @@ public class NotificationHistoryServiceImpl implements NotificationHistoryServic
 
     @Override
     public List<NotificationResponse> findAllByUserUid(String userUid) {
-        return null;
+
+         List<NotificationHistory> histories = historyDataService.findAllByUserId(userUid);
+
+         return NotificationResponse.instance(histories);
     }
 
     @Override
-    public List<NotificationResponse> findAllByType(NotificationServiceType type, String userUid) {
-        return null;
+    public List<NotificationResponse> findAllByUserAndType(String userUid, NotificationServiceType type) {
+
+        List<NotificationHistory> histories = historyDataService.findAllByUserAndType(userUid, type);
+
+        return NotificationResponse.instance(histories);
+    }
+
+    @Override
+    @SneakyThrows
+    public void delete(String userUid, String notificationId) {
+
+        historyDataService.delete(userUid, notificationId);
+    }
+
+    @Override
+    @SneakyThrows
+    public void deleteAll(String userUid, List<String> notificationsIds) {
+
+        historyDataService.deleteAll(userUid, notificationsIds);
     }
 }

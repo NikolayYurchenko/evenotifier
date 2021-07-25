@@ -6,7 +6,7 @@ import com.crazygeniuses.notifier.evenotifier.model.NotificationServiceType;
 
 import java.util.List;
 
-public interface NotificationHistoryService {
+public interface NotificationHistoryService { //TODO: implement filers
 
     /**
      * Create notification history
@@ -23,10 +23,24 @@ public interface NotificationHistoryService {
     List<NotificationResponse> findAllByUserUid(String userUid);
 
     /**
-     * Find all user notification history by type
-     * @param type
+     * Find all user notification history by user and type
      * @param userUid
+     * @param type
      * @return
      */
-    List<NotificationResponse> findAllByType(NotificationServiceType type, String userUid);
+    List<NotificationResponse> findAllByUserAndType(String userUid, NotificationServiceType type);
+
+    /**
+     * Delete notification history
+     * @param userUid
+     * @param notificationId
+     */
+    void delete(String userUid, String notificationId);
+
+    /**
+     * Delete batch of notifications history
+     * @param userUid
+     * @param notificationsIds
+     */
+    void deleteAll(String userUid, List<String> notificationsIds);
 }
