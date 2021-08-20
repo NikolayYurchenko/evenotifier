@@ -25,12 +25,17 @@ spring:
         characterEncoding: UTF-8
     url: jdbc:mysql://localhost:3306/notifier
     username: root
-    password: 1234
+    password: admin
 
   jackson:
     default-property-inclusion: NON_EMPTY
     property-naming-strategy: SNAKE_CASE
     mapper:
       ACCEPT_CASE_INSENSITIVE_ENUMS: true
+
+evenotifier:
+  userSettings:
+    nameMinLength: 5
+    nameMaxLength: 30
 
 

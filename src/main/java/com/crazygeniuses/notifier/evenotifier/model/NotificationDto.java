@@ -1,7 +1,6 @@
 package com.crazygeniuses.notifier.evenotifier.model;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -20,6 +19,5 @@ public class NotificationDto {
 
    private String name;
 
-   @Builder.Default
    private HashMap<String, Object> additionalData = new HashMap<>();
 }
