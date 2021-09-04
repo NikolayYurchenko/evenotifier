@@ -1,8 +1,8 @@
 package com.crazygeniuses.notifier.evenotifier.data.entity;
 
+import com.crazygeniuses.notifier.evenotifier.model.NotificationServiceType;
 import lombok.*;
 import org.hibernate.annotations.Type;
-import org.hibernate.annotations.TypeDef;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -29,6 +29,17 @@ public class User extends BaseEntity {
     @Builder.Default
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "user")
     private List<NotificationHistory> notifications = Collections.emptyList();
+
+    @Type( type = "json" )
+    @Builder.Default
+    @Column(name = "enabled_services", columnDefinition = "json")
+    private List<NotificationServiceType> enabledServices = Collections.emptyList();
+
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @Builder.Default
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "user")
+    private List<ServiceCredentials> serviceCredentials = Collections.emptyList();
 
     @Column(name = "name", nullable = false)
     private String name;

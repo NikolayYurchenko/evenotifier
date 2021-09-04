@@ -6,6 +6,9 @@ import com.crazygeniuses.notifier.evenotifier.model.NotificationServiceType;
 
 import java.util.List;
 
+/**
+ * Notification history service API
+ */
 public interface NotificationHistoryService { //TODO: implement filers
 
     /**

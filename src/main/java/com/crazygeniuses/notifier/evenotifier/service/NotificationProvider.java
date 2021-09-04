@@ -1,10 +1,9 @@
 package com.crazygeniuses.notifier.evenotifier.service;
 
-import com.crazygeniuses.notifier.evenotifier.model.NotificationResponse;
-import com.crazygeniuses.notifier.evenotifier.model.NotificationServiceType;
-
-import java.util.List;
-
+/**
+ * Notification provider service API
+ * @param <T>
+ */
 public interface NotificationProvider<T> {
 
     /**

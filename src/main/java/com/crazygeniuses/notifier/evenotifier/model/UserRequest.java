@@ -7,8 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.*;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -24,6 +24,10 @@ public class UserRequest {
 
     @NotBlank
     private String phone;
+
+    @NotEmpty
+    @Size(min = 1)
+    private List<ServiceCredentialsRequest> enabledServices;
 
     public void validate(UserProperties properties) throws InvalidPhoneNumberException {
 
