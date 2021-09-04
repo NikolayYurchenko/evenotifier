@@ -26,10 +26,10 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .ignoredParameterTypes(AuthenticationPrincipal.class)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.eliftech.shopify.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.crazygeniuses.notifier.evenotifier"))
                 .paths(PathSelectors.any())
                 .build()
-                .groupName("shopify-manager-api")
+                .groupName("evenotifier-api")
                 .apiInfo(apiInfo())
                 .useDefaultResponseMessages(false)
                 .securitySchemes(Collections.singletonList(securityScheme()))
@@ -38,8 +38,8 @@ public class SwaggerConfig {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("Shopify-manager API")
-                .description("API for managing shopify")
+                .title("Evenotifier API")
+                .description("API for evenotifier communication")
                 .version("1.0.0")
                 .build();
     }
