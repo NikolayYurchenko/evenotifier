@@ -15,18 +15,28 @@ public class ServiceCredentialsDataService {
 
     private ServiceCredentialsRepository serviceCredentialsRepository;
 
+    /**
+     * Build service credentials
+     * @param requests
+     * @return
+     */
     public List<ServiceCredentials> build(List<ServiceCredentialsRequest> requests) {
 
         log.debug("Building service credentials from: {}", requests);
 
-        return requests.stream().map(request -> ServiceCredentials.builder()
+        return requests.stream().
+                map(this::build)
+                .collect(Collectors.toList());
+    }
 
+    public ServiceCredentials build(ServiceCredentialsRequest request) {
+
+        return ServiceCredentials.builder()
                 .authType(request.getAuthType())
                 .serviceType(request.getServiceType())
                 .login(request.getLogin())
                 .password(request.getPassword())
                 .token(request.getToken())
-
-                .build()).collect(Collectors.toList());
+                .build();
     }
 }

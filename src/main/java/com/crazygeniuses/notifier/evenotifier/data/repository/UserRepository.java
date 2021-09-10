@@ -14,4 +14,10 @@ public interface UserRepository extends JpaRepository<User, Long> {
      * @return
      */
     Optional<User> findByUuid(UUID uuid);
+
+    /**
+     * Delete user by uuid
+     * @param userUid
+     */
+    void deleteByUserUuid(UUID userUid);
 }
