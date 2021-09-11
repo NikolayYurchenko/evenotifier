@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -26,12 +27,13 @@ public class ServiceCredentialsDataService {
 
         return requests.stream().
                 map(this::build)
-                .collect(Collectors.toList());
+               .collect(Collectors.toList());
     }
 
     public ServiceCredentials build(ServiceCredentialsRequest request) {
 
         return ServiceCredentials.builder()
+                .uuid(UUID.randomUUID())
                 .authType(request.getAuthType())
                 .serviceType(request.getServiceType())
                 .login(request.getLogin())

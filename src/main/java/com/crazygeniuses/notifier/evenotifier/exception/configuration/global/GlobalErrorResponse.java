@@ -9,9 +9,11 @@ import lombok.*;
 @ToString
 public class GlobalErrorResponse {
 
-    String msg;
+    private Long timestamp;
 
-    String errorMsg;
+    private String msg;
 
-    String code;
+    private String errorMsg;
+
+    private String code;
 }

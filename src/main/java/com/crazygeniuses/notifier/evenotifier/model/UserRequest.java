@@ -25,6 +25,7 @@ public class UserRequest {
     @NotBlank
     private String phone;
 
+    @NotNull
     @NotEmpty
     @Size(min = 1)
     private List<ServiceCredentialsRequest> enabledServices;
@@ -33,9 +34,11 @@ public class UserRequest {
 
         if (name.length() < properties.getNameMinLength() || name.length() > properties.getNameMaxLength() ) {
 
-            throw new IllegalArgumentException("User name is not valid, min length:[{"+ properties.getNameMinLength() +"}], max length:[{"+ properties.getNameMaxLength() +"}]");
+            throw new IllegalArgumentException("User name is not valid, min length:["+ properties.getNameMinLength() +"], max length:["+ properties.getNameMaxLength() +"]");
         }
 
         PhoneValidatorUtil.validatePhoneNumber(phone);
+
+        enabledServices.forEach(ServiceCredentialsRequest::validate);
     }
 }

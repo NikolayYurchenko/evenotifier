@@ -29,6 +29,7 @@ public class UserDataService {
      * @param request
      * @return
      */
+    @Transactional
     public User create(UserRequest request) {
 
         log.debug("Creating user from data:[${}]", request);
@@ -116,6 +117,6 @@ public class UserDataService {
 
         log.debug("Deleting user by uuid:[${}]", userUid);
 
-        userRepository.deleteByUserUuid(UUID.fromString(userUid));
+        userRepository.deleteByUuid(UUID.fromString(userUid));
     }
 }

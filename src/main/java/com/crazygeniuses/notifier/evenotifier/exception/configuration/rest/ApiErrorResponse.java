@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;
 
 import javax.validation.ConstraintViolationException;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,10 +20,6 @@ public class ApiErrorResponse {
     private Long timestamp;
 
     private String message;
-
-    private String cause;
-
-    private String stackTrace;
 
     private Map<String, String> errors = new HashMap<>();
 
@@ -56,7 +51,6 @@ public class ApiErrorResponse {
         response.setCode(HttpStatus.UNPROCESSABLE_ENTITY.value());
         response.setTimestamp(System.currentTimeMillis());
         response.setMessage(e.getMessage());
-        response.setCause(e.getCause().toString());
 
         e.getConstraintViolations().forEach(it -> {
             response.getErrors().put(it.getPropertyPath().toString(), it.getMessage());
@@ -76,8 +70,7 @@ public class ApiErrorResponse {
 
         response.setMessage(e.getMessage());
         response.setTimestamp(System.currentTimeMillis());
-        response.setCause(e.getCause().toString());
-        response.setStackTrace(Arrays.toString(e.getStackTrace()));
+        response.setCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
 
         if (e instanceof BaseEvenotifierException) {
             response.setCode(((BaseEvenotifierException) e).getCode());

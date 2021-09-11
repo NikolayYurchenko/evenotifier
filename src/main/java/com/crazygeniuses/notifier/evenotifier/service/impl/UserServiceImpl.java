@@ -1,5 +1,6 @@
 package com.crazygeniuses.notifier.evenotifier.service.impl;
 
+import com.crazygeniuses.notifier.evenotifier.config.user.UserProperties;
 import com.crazygeniuses.notifier.evenotifier.data.entity.User;
 import com.crazygeniuses.notifier.evenotifier.data.service.UserDataService;
 import com.crazygeniuses.notifier.evenotifier.model.NotificationServiceType;
@@ -7,6 +8,7 @@ import com.crazygeniuses.notifier.evenotifier.model.ServiceCredentialsRequest;
 import com.crazygeniuses.notifier.evenotifier.model.UserRequest;
 import com.crazygeniuses.notifier.evenotifier.model.UserResponse;
 import com.crazygeniuses.notifier.evenotifier.service.UserService;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,8 +23,14 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserDataService userDataService;
 
+    @Autowired
+    private UserProperties userProperties;
+
     @Override
+    @SneakyThrows
     public UserResponse create(UserRequest request) {
+
+        request.validate(userProperties);
 
         User user = userDataService.create(request);
 
