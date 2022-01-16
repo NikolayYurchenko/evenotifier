@@ -1,15 +1,15 @@
 package com.crazygeniuses.notifier.evenotifier.config.security.jwt;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.SneakyThrows;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.Date;
 import java.util.Set;
 
@@ -17,9 +17,6 @@ import java.util.Set;
 public class JwtResolver {
 
     private static final String JWT_PREFIX = "Bearer ";
-
-    @Autowired
-    private ObjectMapper objectMapper;
 
     @Value("${evenotifier.security.jwt.secret}")
     private String secretKey;
@@ -43,7 +40,7 @@ public class JwtResolver {
 
         if (!jwtToken.startsWith(JWT_PREFIX)) {
 
-            throw new IllegalArgumentException("Toke must be start with Bearer");
+            throw new IllegalArgumentException("Token must be start with Bearer");
         }
         return jwtToken.substring(JWT_PREFIX.length());
     }
@@ -55,16 +52,21 @@ public class JwtResolver {
      * @return
      */
     @SneakyThrows
-    protected String generateToken(String userId, Set<String> roles) {
+    public String generateToken(String userId, Set<String> roles) {
 
         Claims claims = Jwts.claims().setSubject(userId);
 
         claims.put("auth", roles);
 
+        Date validity = new Date(LocalDateTime.now()
+                .plusSeconds(this.validityInSeconds)
+                .toInstant(ZoneOffset.UTC)
+                .toEpochMilli());
+
         return Jwts.builder()
                 .setClaims(claims)
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + validityInSeconds))
+                .setExpiration(validity)
                 .signWith(SignatureAlgorithm.HS256, secretKey)
                 .compact();
     }
