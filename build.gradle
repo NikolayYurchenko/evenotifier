@@ -37,31 +37,54 @@ ext {
 
 dependencies {
 
+	/**
+	 * Spring base(core)
+	 */
 	implementation 'org.springframework.boot:spring-boot-starter-amqp'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
 
+	/**
+	 * Third party
+	 */
 	implementation 'com.vladmihalcea:hibernate-types-52:2.9.11'
 	implementation 'com.fasterxml.jackson.core:jackson-databind:2.11.3'
-
 	implementation 'jakarta.validation:jakarta.validation-api:2.0.2'
-	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'com.googlecode.libphonenumber:libphonenumber:8.12.5'
 
+	/**
+	 * Google services API
+	 */
 	implementation 'com.google.oauth-client:google-oauth-client:1.25.0'
 	implementation 'com.google.apis:google-api-services-gmail:v1-rev110-1.25.0'
 
+	/**
+	 * Swagger
+	 */
 	implementation 'io.springfox:springfox-boot-starter:3.0.0'
 	implementation 'io.springfox:springfox-swagger2:3.0.0'
 	implementation 'io.springfox:springfox-swagger-ui:3.0.0'
 
+	/**
+	 * Security
+	 */
+	implementation('org.springframework.security:spring-security-jwt:1.0.10.RELEASE')
+	implementation("io.jsonwebtoken:jjwt:0.9.1")
+
+	/**
+	 * Test impl
+	 */
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.amqp:spring-rabbit-test'
 	testImplementation 'org.springframework.security:spring-security-test'
 
+	/**
+	 * Runtime & compile & annotation processors
+	 */
 	runtimeOnly 'mysql:mysql-connector-java'
+	compile 'com.auth0:java-jwt:3.4.0'
 	annotationProcessor 'org.projectlombok:lombok'
 }
 
